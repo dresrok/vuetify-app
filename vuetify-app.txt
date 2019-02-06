@@ -1,0 +1,3 @@
+# Setting Up Vuetify
+> vue create vuetify-app
+> vue add vuetify
