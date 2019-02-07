@@ -3,12 +3,16 @@
     h1.subheading.grey--text Dashboard
     v-container.my-5
       v-layout.mb-3(row)
-        v-btn(small, flat, color="grey", @click="sortBy('title')")
-          v-icon(left, small) folder
-          span.caption.text-lowercase By project name
-        v-btn(small, flat, color="grey", @click="sortBy('person')")
-          v-icon(left, small) person
-          span.caption.text-lowercase By person
+        v-tooltip(top)
+          v-btn(small, flat, color="grey", @click="sortBy('title')", slot="activator")
+            v-icon(left, small) folder
+            span.caption.text-lowercase By project name
+          span Sort projects by project name
+        v-tooltip(top)
+          v-btn(small, flat, color="grey", @click="sortBy('person')", slot="activator")
+            v-icon(left, small) person
+            span.caption.text-lowercase By person
+          span Sort projects by person
       v-card(flat, v-for="project in projects" :key="project.title")
         v-layout(row, wrap, :class="`pa-3 project ${project.status}`")
           v-flex(xs12, md6)
