@@ -11,6 +11,11 @@
         v-icon(right) exit_to_app
 
     v-navigation-drawer.primary(app v-model="drawer")
+      v-layout(column, align-center)
+        v-flex.mt-5
+          v-avatar(size="100")
+            img(src="/avatar-1.png")
+          p.white--text.subheading.mt-1 The Net Ninja
       v-list
         v-list-tile(v-for="link in links" :key="link.text" router :to="link.route")
           v-list-tile-action
