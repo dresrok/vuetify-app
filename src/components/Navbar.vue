@@ -10,8 +10,8 @@
         span Sign Out
         v-icon(right) exit_to_app
 
-    v-navigation-drawer.indigo(app v-model="drawer")
-      p Test
+    v-navigation-drawer.primary(app v-model="drawer")
+      p.error Test
 </template>
 
 <script>
