@@ -1,7 +1,7 @@
 <template lang="pug">
   .projects
-    h1 Projects
-    
+    h1.subheading.grey--text Projects
+    v-container.my-5 content
 </template>
 
 <script>
