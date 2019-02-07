@@ -11,14 +11,24 @@
         v-icon(right) exit_to_app
 
     v-navigation-drawer.primary(app v-model="drawer")
-      p.error Test
+      v-list
+        v-list-tile(v-for="link in links" :key="link.text" router :to="link.route")
+          v-list-tile-action
+            v-icon.white--text {{ link.icon }}
+          v-list-tile-content
+            v-list-tile-title.white--text {{ link.text }}
 </template>
 
 <script>
 export default {
   data() {
     return {
-      drawer: false
+      drawer: false,
+      links: [
+        { icon: 'dashboard', text: 'Dashboard', route: '/'},
+        { icon: 'folder', text: 'My Projects', route: '/projects'},
+        { icon: 'person', text: 'Team', route: '/team'}
+      ]
     }
   },
 }
