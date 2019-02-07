@@ -14,8 +14,8 @@
             .caption.grey--text Due by
             div {{ project.due }}
           v-flex(xs2, sm4, md2)
-            div.right
-              v-chip(small, :class="`${project.status} white--text caption my-2`") {{ project.status }}
+            .caption.grey--text Status
+            div {{ project.status }}
         v-divider
 </template>
 
@@ -42,12 +42,6 @@ export default {
     border-left: 4px solid orange
   &.overdue
     border-left 4px solid tomato
-.v-chip
-    &.complete
-        background #3cd1c2
-    &.ongoing
-        background #ffaa2c
-    &.overdue
-        background #f83e70
+
 </style>
 
