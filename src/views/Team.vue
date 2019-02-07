@@ -1,6 +1,6 @@
 <template lang="pug">
-  .home
-    h1 Homepage
+  .team
+    h1 Team
     
 </template>
 
