@@ -24,8 +24,8 @@
           v-flex(xs6, sm4, md2)
             .caption.grey--text Due by
             div {{ project.due }}
-          v-flex(xs2, sm4, md2)
-            div.right
+          v-flex(xs12, sm4, md2)
+            div.text-sm-right
               v-chip(small, :class="`${project.status} white--text caption my-2`") {{ project.status }}
         v-divider
 </template>
