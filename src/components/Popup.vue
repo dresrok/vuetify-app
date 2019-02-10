@@ -5,14 +5,14 @@
       v-card-title
         h2 Add a New Project
       v-card-text
-        v-form.px-3
-          v-text-field(label="Title", v-model="title", prepend-icon="folder")
-          v-textarea(label="Information", v-model="content", prepend-icon="edit")
-          v-menu
-            v-text-field(:value="fomattedDate" slot="activator", label="Due date", prepend-icon="date_range", readonly)
-            v-date-picker(v-model="due")
+        v-form.px-3(ref="form")
+          v-text-field(label="Title", v-model="title", prepend-icon="folder", :rules="inputRules")
+          v-textarea(label="Information", v-model="content", prepend-icon="edit", :rules="inputRules")
+          v-menu(v-model="menu" :close-on-content-click="false")
+            v-text-field(slot="activator", clearable, label="Due date", prepend-icon="date_range", :rules="inputRules", :value="fomattedDate")
+            v-date-picker(v-model="due" @change="menu = false")
           v-spacer
-          v-btn.success.mx-0(flat, @click="submit") Add project
+          v-btn.success.mx-0.mt-3(flat, @click="submit") Add project
 </template>
 
 <script>
@@ -23,7 +23,12 @@ export default {
     return {
       title: '',
       content: '',
-      due: null
+      due: null,
+      menu: false,
+      inputRules: [
+        v => !!v || 'This field is required',
+        v => v.length >= 3 || 'Minimum length is 3 characters'
+      ]
     }
   },
   computed: {
@@ -33,7 +38,9 @@ export default {
   },
   methods: {
     submit () {
-      console.log(this.title, this.content)
+      if (this.$refs.form.validate()) {
+        console.log(this.title, this.content)
+      }
     }
   }
 }

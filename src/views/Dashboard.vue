@@ -2,7 +2,7 @@
   .dashboard
     h1.subheading.grey--text Dashboard
     v-container.my-5
-      v-layout.mb-3(row)
+      v-layout.mb-3(row, justify-start)
         v-tooltip(top)
           v-btn(small, flat, color="grey", @click="sortBy('title')", slot="activator")
             v-icon(left, small) folder

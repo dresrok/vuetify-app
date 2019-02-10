@@ -21,7 +21,7 @@
       v-layout(column, align-center)
         v-flex.mt-5
           v-avatar(size="100")
-            img(src="/avatar-1.png")
+            img.text-lg-center(src="/avatar-1.png")
           p.white--text.subheading.mt-1 The Net Ninja
         v-flex.mt-4.mb-3
           popup
