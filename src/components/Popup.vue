@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-dialog(max-width="600px")
+  v-dialog(max-width="600px", v-model="dialog")
     v-btn.success(flat, slot="activator") Add new project
     v-card
       v-card-title
@@ -12,7 +12,7 @@
             v-text-field(slot="activator", clearable, label="Due date", prepend-icon="date_range", :rules="inputRules", :value="fomattedDate")
             v-date-picker(v-model="due" @change="menu = false")
           v-spacer
-          v-btn.success.mx-0.mt-3(flat, @click="submit") Add project
+          v-btn.success.mx-0.mt-3(flat, @click="submit", :loading="loading") Add project
 </template>
 
 <script>
@@ -29,7 +29,9 @@ export default {
       inputRules: [
         v => !!v || 'This field is required',
         v => v.length >= 3 || 'Minimum length is 3 characters'
-      ]
+      ],
+      loading: false,
+      dialog: false
     }
   },
   computed: {
@@ -40,6 +42,7 @@ export default {
   methods: {
     submit () {
       if (this.$refs.form.validate()) {
+        this.loading = true
         const project = {
           title: this.title,
           content: this.content,
@@ -50,7 +53,8 @@ export default {
         db.collection('projects')
           .add(project)
           .then(() => {
-            console.log('Added to db')
+            this.loading = false
+            this.dialog = false
           })
       }
     }
