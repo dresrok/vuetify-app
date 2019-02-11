@@ -1,5 +1,8 @@
 <template lang="pug">
   nav
+    v-snackbar(v-model="snackbar", :timeout="4000", top, color="success")
+      span Awesome! You added a new project.
+      v-btn(flat, color="white", @click="snackbar = false") Close
     v-toolbar(flat, app)
       v-toolbar-side-icon.grey--text(@click="drawer = !drawer")
       v-toolbar-title.text-uppercase.grey--text
@@ -24,7 +27,7 @@
             img.text-lg-center(src="/avatar-1.png")
           p.white--text.subheading.mt-1 The Net Ninja
         v-flex.mt-4.mb-3
-          popup
+          popup(@projectAdded="snackbar = true")
       v-list
         v-list-tile(v-for="link in links" :key="link.text" router :to="link.route")
           v-list-tile-action
@@ -45,7 +48,8 @@ export default {
         { icon: 'dashboard', text: 'Dashboard', route: '/'},
         { icon: 'folder', text: 'My Projects', route: '/projects'},
         { icon: 'person', text: 'Team', route: '/team'}
-      ]
+      ],
+      snackbar: false
     }
   },
 }
